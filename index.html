@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه امیر</title>
+<style>
+:root{--navy:#101a33;--blue:#315bd6;--muted:#687386;--bg:#f4f6fb;--line:#e6eaf2}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:#172033}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+header{background:var(--navy);color:#fff;padding:17px 4%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-size:23px;font-weight:bold}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{padding:11px 13px;border:1px solid #ddd;border-radius:10px;min-width:200px}
+button{cursor:pointer}
+.primary,.header-button{border:0;border-radius:10px;background:var(--blue);color:white;padding:11px 16px}
+main{max-width:1180px;width:92%;margin:26px auto}
+.hero{background:linear-gradient(125deg,#101a33,#274b9b);color:white;padding:34px;border-radius:20px;margin-bottom:18px}
+.hero h1{margin:0 0 12px;font-size:clamp(24px,4vw,36px)}
+.hero p{line-height:1.9;margin:0;color:#e4eaff}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 28px}
+.benefit{background:white;padding:15px;border:1px solid var(--line);border-radius:12px;text-align:center;font-size:14px}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 0}
+.section-heading h2{margin:0;font-size:23px}
+.filters select{padding:10px;border:1px solid var(--line);border-radius:10px;background:white}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.product-card{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.product-image{height:220px;background:#f7f8fc;display:flex;align-items:center;justify-content:center;padding:16px}
+.product-image img{width:100%;height:100%;object-fit:contain}
+.product-info{padding:17px;display:flex;flex-direction:column;gap:10px;flex:1}
+.product-info h3{margin:0;font-size:18px}
+.category{font-size:12px;color:var(--blue);background:#edf1ff;border-radius:20px;padding:6px 10px;align-self:flex-start}
+.price{font-weight:bold;color:var(--blue);font-size:19px}
+.description{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
+.card-actions{display:flex;gap:8px;margin-top:auto;padding-top:7px}
+.card-actions a,.card-actions button{flex:1;text-align:center;border:0;border-radius:9px;padding:11px 8px;font-size:13px}
+.view{background:#eaf0ff;color:#2449b6}
+.add{background:var(--blue);color:white}
+.empty{background:white;border-radius:12px;padding:25px;text-align:center;color:var(--muted);grid-column:1/-1}
+.cart-section{margin-top:34px;background:white;border:1px solid var(--line);border-radius:16px;padding:22px}
+.cart-section h2{margin-top:0}
+.cart-item{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:13px 0}
+.cart-name{font-weight:bold}
+.cart-sub{font-size:13px;color:var(--muted);margin-top:5px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button,.remove{border:1px solid var(--line);background:white;border-radius:7px;padding:5px 10px}
+.remove{color:#b42318}
+.cart-total{display:flex;justify-content:space-between;gap:12px;font-size:18px;font-weight:bold;margin-top:18px}
+.secondary{background:#eef1f7;color:#243047;border:0;border-radius:9px;padding:11px 14px}
+.cart-controls{margin-top:18px}
+.order-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.order-form input,.order-form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:9px}
+.order-form textarea{grid-column:1/-1;min-height:80px}
+.notice{color:#16804a;line-height:1.8}
+.footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:760px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.benefits{grid-template-columns:1fr}.hero{padding:25px}}
+@media(max-width:520px){.products{grid-template-columns:1fr}.product-image{height:240px}.cart-item{grid-template-columns:1fr auto}.cart-item .remove{grid-column:1/-1;justify-self:start}.order-form{grid-template-columns:1fr}.order-form textarea{grid-column:auto}.search{min-width:130px}}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="index.html">فروشگاه امیر</a>
+<div class="header-actions">
+<input id="searchInput" class="search" type="search" placeholder="جست‌وجوی محصول...">
+<button class="header-button" id="goCart">🛒 سبد خرید (<span id="cartCount">۰</span>)</button>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<h1>به فروشگاه امیر خوش آمدید</h1>
+<p>محصولات موردعلاقه‌ات را پیدا کن، جزئیاتشان را ببین و به سبد خرید اضافه کن.</p>
+</section>
+
+<section class="benefits">
+<div class="benefit">🚚 ارسال هماهنگ‌شده با فروشگاه</div>
+<div class="benefit">🛍️ مشاهده جزئیات محصولات</div>
+<div class="benefit">💬 ثبت سفارش آزمایشی</div>
+</section>
+
+<div class="section-heading">
+<h2>محصولات فروشگاه</h2>
+<div class="filters">
+<select id="categoryFilter">
+<option value="all">همه دسته‌ها</option>
+<option value="shoes">کفش</option>
+<option value="headphones">هدفون</option>
+<option value="watches">ساعت هوشمند</option>
+</select>
+</div>
+</div>
+
+<section class="products" id="productsGrid"></section>
+
+<section class="cart-section" id="cartSection">
+<h2>سبد خرید شما</h2>
+<div id="cartItems"></div>
+<div class="cart-total"><span>مجموع مبلغ</span><span id="cartTotal">۰ تومان</span></div>
+<div class="cart-controls"><button class="secondary" id="clearCart">خالی کردن سبد</button></div>
+<h3>ثبت سفارش آزمایشی</h3>
+<p class="description">این فرم آزمایشی است و سفارش یا پرداخت واقعی انجام نمی‌دهد.</p>
+<form class="order-form" id="orderForm">
+<input id="customerName" placeholder="نام و نام خانوادگی" required>
+<input id="customerPhone" type="tel" placeholder="شماره تماس" required>
+<textarea id="customerAddress" placeholder="آدرس کامل" required></textarea>
+<button class="primary" type="submit">ثبت سفارش آزمایشی</button>
+</form>
+<p class="notice" id="orderMessage" aria-live="polite"></p>
+</section>
+</main>
+<footer class="footer">فروشگاه امیر · نسخه آزمایشی</footer>
+
+<script>
+const PRODUCTS=[
+{id:"shoes",name:"کفش اسپرت",price:1500000,image:"images/shoes.jpg.jpg",category:"shoes",categoryName:"کفش",description:"کفش اسپرت مناسب استفاده روزمره با طراحی زیبا و راحت."},
+{id:"headphones",name:"هدفون",price:900000,image:"images/Clock.jpg.jpg",category:"headphones",categoryName:"هدفون",description:"هدفون مناسب گوش دادن به موسیقی و استفاده روزمره."},
+{id:"watch",name:"ساعت هوشمند",price:2200000,image:"images/amir.jpg.webp",category:"watches",categoryName:"ساعت هوشمند",description:"ساعت هوشمند با طراحی مدرن و مناسب استفاده روزمره."}
+];
+const CART_KEY="amirStoreCart";
+const grid=document.getElementById("productsGrid");
+const searchInput=document.getElementById("searchInput");
+const categoryFilter=document.getElementById("categoryFilter");
+
+function money(n){return Number(n).toLocaleString("fa-IR")+" تومان"}
+function getCart(){
+ try{
+  const cart=JSON.parse(localStorage.getItem(CART_KEY)||"[]");
+  return Array.isArray(cart)?cart:[];
+ }catch{return []}
+}
+function saveCart(cart){localStorage.setItem(CART_KEY,JSON.stringify(cart))}
+
+function renderProducts(){
+ const q=searchInput.value.trim().toLocaleLowerCase();
+ const cat=categoryFilter.value;
+ const items=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&(p.name.toLocaleLowerCase().includes(q)||p.description.toLocaleLowerCase().includes(q)));
+ grid.innerHTML="";
+ if(!items.length){grid.innerHTML='<div class="empty">محصولی پیدا نشد.</div>';return}
+ items.forEach(p=>{
+  const card=document.createElement("article");
+  card.className="product-card";
+  card.innerHTML=`
+  <a class="product-image" href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a>
+  <div class="product-info">
+  <span class="category">${p.categoryName}</span>
+  <h3>${p.name}</h3>
+  <p class="description">${p.description}</p>
+  <div class="price">${money(p.price)}</div>
+  <div class="card-actions">
+  <a class="view" href="product.html?id=${p.id}">مشاهده محصول</a>
+  <button class="add" data-add="${p.id}">افزودن به سبد</button>
+  </div></div>`;
+  grid.appendChild(card);
+ });
+}
+
+function addToCart(id){
+ const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+ const cart=getCart();const item=cart.find(x=>x.id===id);
+ if(item)item.quantity=(Number(item.quantity)||1)+1;
+ else cart.push({id:p.id,name:p.name,price:p.price,quantity:1});
+ saveCart(cart);renderCart();
+}
+function changeQty(id,delta){
+ const cart=getCart();const item=cart.find(x=>x.id===id);if(!item)return;
+ item.quantity=(Number(item.quantity)||1)+delta;
+ saveCart(cart.filter(x=>x.quantity>0));renderCart();
+}
+function renderCart(){
+ const cart=getCart();
+ document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+(Number(x.quantity)||0),0).toLocaleString("fa-IR");
+ const host=document.getElementById("cartItems");host.innerHTML="";
+ if(!cart.length)host.innerHTML='<p class="description">سبد خرید خالی است.</p>';
+ cart.forEach(item=>{
+  const row=document.createElement("div");row.className="cart-item";
+  row.innerHTML=`<div><div class="cart-name"></div><div class="cart-sub"></div></div>
+  <div class="qty"><button data-minus="${item.id}">−</button><span>${item.quantity}</span><button data-plus="${item.id}">+</button></div>
+  <button class="remove" data-remove="${item.id}">حذف</button>`;
+  row.querySelector(".cart-name").textContent=item.name;
+  row.querySelector(".cart-sub").textContent=money(item.price)+" × "+item.quantity;
+  host.appendChild(row);
+ });
+ document.getElementById("cartTotal").textContent=money(cart.reduce((s,x)=>s+x.price*x.quantity,0));
+}
+
+document.addEventListener("click",e=>{
+ const add=e.target.closest("[data-add]");if(add)addToCart(add.dataset.add);
+ const plus=e.target.closest("[data-plus]");if(plus)changeQty(plus.dataset.plus,1);
+ const minus=e.target.closest("[data-minus]");if(minus)changeQty(minus.dataset.minus,-1);
+ const remove=e.target.closest("[data-remove]");
+ if(remove){saveCart(getCart().filter(x=>x.id!==remove.dataset.remove));renderCart()}
+});
+document.getElementById("clearCart").addEventListener("click",()=>{saveCart([]);renderCart();document.getElementById("orderMessage").textContent=""});
+document.getElementById("goCart").addEventListener("click",()=>document.getElementById("cartSection").scrollIntoView({behavior:"smooth"}));
+searchInput.addEventListener("input",renderProducts);
+categoryFilter.addEventListener("change",renderProducts);
+document.getElementById("orderForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!getCart().length){document.getElementById("orderMessage").textContent="ابتدا محصولی به سبد خرید اضافه کن.";return}
+ document.getElementById("orderMessage").textContent="سفارش آزمایشی ثبت شد، "+document.getElementById("customerName").value+"! اطلاعات به سرور ارسال نشده است.";
+});
+renderProducts();renderCart();
+</script>
+</body>
+</html>

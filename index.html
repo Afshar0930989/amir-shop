@@ -59,141 +59,131 @@ main{max-width:1180px;width:92%;margin:26px auto}
 @media(max-width:760px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.benefits{grid-template-columns:1fr}.hero{padding:25px}}
 @media(max-width:520px){.products{grid-template-columns:1fr}.product-image{height:240px}.cart-item{grid-template-columns:1fr auto}.cart-item .remove{grid-column:1/-1;justify-self:start}.order-form{grid-template-columns:1fr}.order-form textarea{grid-column:auto}.search{min-width:130px}}
  
-/* ===== ظاهر مدرن فروشگاه امیر ===== */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-img {
-  max-width: 100%;
-}
-
-/* چیدمان کارت‌های محصولات */
-#products,
-.products-grid,
-.product-grid {
+/* ظاهر حرفه‌ای کارت‌های فروشگاه امیر */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 
-/* کارت محصول؛ کلاس‌های رایج */
-.product-card,
-.product,
-.product-item {
+.product-card {
   min-width: 0;
   overflow: hidden;
+  border: 1px solid #e6eaf2;
   border-radius: 18px;
   background: #fff;
-  border: 1px solid #eeeeee;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.045);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  box-shadow: 0 5px 18px rgba(17, 35, 73, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.product-card img,
-.product img,
-.product-item img {
+.product-image {
   display: block;
   width: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
+  overflow: hidden;
+  background: #f7f8fc;
 }
 
-.product-card:hover,
-.product:hover,
-.product-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
-  border-color: #dddddd;
+.product-image img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.product-card:hover img,
-.product:hover img,
-.product-item:hover img {
-  transform: scale(1.035);
+.product-info {
+  min-width: 0;
+  padding: 16px;
 }
 
-/* دکمه‌ها */
-button,
-.btn {
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease,
-    box-shadow 0.2s ease;
+.product-info h3 {
+  margin: 8px 0;
+  color: #111d36;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-button:active,
-.btn:active {
+.product-info .description {
+  color: #737d90;
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.price {
+  margin: 12px 0;
+  color: #315bd4;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.product-info .btn-primary,
+.product-info .btn-secondary {
+  min-width: 0;
+  border-radius: 11px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.product-info .btn-primary:active,
+.product-info .btn-secondary:active {
   transform: scale(0.97);
 }
 
-/* کادرهای ورودی */
-input,
-select,
-textarea {
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-/* نمایش در موبایل */
-@media (max-width: 600px) {
-  body {
-    font-size: 14px;
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(17, 35, 73, 0.11);
   }
 
-  #products,
-  .products-grid,
-  .product-grid {
+  .product-card:hover .product-image img {
+    transform: scale(1.035);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
-  .product-card,
-  .product,
-  .product-item {
+  .product-card {
     border-radius: 13px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
   }
 
-  .product-card:hover,
-  .product:hover,
-  .product-item:hover {
-    transform: none;
+  .product-image img {
+    height: 145px;
   }
 
-  button {
-    min-height: 40px;
+  .product-info {
+    padding: 10px;
+  }
+
+  .product-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .product-info .description {
+    font-size: 0.8rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .product-info .btn-primary,
+  .product-info .btn-secondary {
+    width: 100%;
+    padding: 10px 6px;
+    font-size: 0.82rem;
   }
 }
 
-/* احترام به تنظیم کاهش حرکت دستگاه */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  .product-card,
+  .product-image img,
+  .product-info .btn-primary,
+  .product-info .btn-secondary {
+    transition: none;
   }
 }
 

@@ -58,6 +58,145 @@ main{max-width:1180px;width:92%;margin:26px auto}
 .footer{text-align:center;color:var(--muted);padding:25px}
 @media(max-width:760px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.benefits{grid-template-columns:1fr}.hero{padding:25px}}
 @media(max-width:520px){.products{grid-template-columns:1fr}.product-image{height:240px}.cart-item{grid-template-columns:1fr auto}.cart-item .remove{grid-column:1/-1;justify-self:start}.order-form{grid-template-columns:1fr}.order-form textarea{grid-column:auto}.search{min-width:130px}}
+ 
+/* ===== ظاهر مدرن فروشگاه امیر ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* چیدمان کارت‌های محصولات */
+#products,
+.products-grid,
+.product-grid {
+  gap: 18px;
+}
+
+/* کارت محصول؛ کلاس‌های رایج */
+.product-card,
+.product,
+.product-item {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.045);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.product-card img,
+.product img,
+.product-item img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover,
+.product:hover,
+.product-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
+  border-color: #dddddd;
+}
+
+.product-card:hover img,
+.product:hover img,
+.product-item:hover img {
+  transform: scale(1.035);
+}
+
+/* دکمه‌ها */
+button,
+.btn {
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* کادرهای ورودی */
+input,
+select,
+textarea {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* نمایش در موبایل */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  #products,
+  .products-grid,
+  .product-grid {
+    gap: 10px;
+  }
+
+  .product-card,
+  .product,
+  .product-item {
+    border-radius: 13px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .product-card:hover,
+  .product:hover,
+  .product-item:hover {
+    transform: none;
+  }
+
+  button {
+    min-height: 40px;
+  }
+}
+
+/* احترام به تنظیم کاهش حرکت دستگاه */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 </style>
 </head>
 <body>
